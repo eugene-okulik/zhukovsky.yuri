@@ -24,4 +24,4 @@ e = 30
 f = 45
 print('\nTask 4:')
 print('hypotenuse =', (e**2 + f**2)**0.5)
-print('square =', e*f / 2)
+print('square =', e * f / 2)
