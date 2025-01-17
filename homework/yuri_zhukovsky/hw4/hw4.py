@@ -15,7 +15,8 @@ print(y_list)
 
 print('\nTask_3')
 y_dict = my_dict['dict']
-y_dict['i am a tuple'] = 6
+# y_dict['i am a tuple'] = 6
+y_dict[('i am a tuple',)] = 6
 y_dict.pop('port')
 print(y_dict)
 
