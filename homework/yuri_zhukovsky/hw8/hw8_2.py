@@ -21,6 +21,6 @@ for a in fibonacci(100000):
     elif n == 1000:
         print(a)
     elif n == 100000:
-         print(str(a))
-         break
+        print(str(a))
+        break
     n += 1
