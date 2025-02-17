@@ -2,7 +2,6 @@ class Book:
     page_material = 'бумага'
     text_presence = False
 
-
     def __init__(self, book_title, author, number_pages, isbn, book_reservation):
         self.book_title = book_title
         self.author = author
@@ -31,7 +30,6 @@ for book in books:
 
 
 class SchoolBook(Book):
-
 
     def __init__(self, book_title, author, number_pages, isbn, book_reservation,
                  subject, school_class, task_available):
