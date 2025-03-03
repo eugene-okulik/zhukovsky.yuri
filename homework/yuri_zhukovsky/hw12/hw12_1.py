@@ -32,7 +32,7 @@ rose_white = Roses('Роза', 'Белый', 15, '40 см', 'Ирис', True, 12
 violet_purple = Violets('Фиалка', 'Фиолетовый', 5, '5 см', 'Сладкий пудровый',
                         True, 5, 8, 'fresh')
 violet_blue = Violets('Фиалка', 'Небесный', 7, '8 см', 'Древесный',
-                      False,6, 2, 'stale')
+                      False, 6, 2, 'stale')
 
 n_rose_red = input("Введите кол-во красных роз: ")
 n_rose_white = input("Введите кол-во белых роз: ")
