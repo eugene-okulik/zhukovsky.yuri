@@ -14,24 +14,24 @@ class Flowers:
 
 
 class Roses(Flowers):
-        def __init__(self, name, color, num_petals, stem_length, smell, spikes, price, life_time, freshness):
-            super().__init__(name, color, num_petals, stem_length, smell, price, life_time, freshness)
-            self.spikes = spikes
+    def __init__(self, name, color, num_petals, stem_length, smell, spikes, price, life_time, freshness):
+        super().__init__(name, color, num_petals, stem_length, smell, price, life_time, freshness)
+        self.spikes = spikes
 
 
 class Violets(Flowers):
-        def __init__(self, name, color, num_petals, stem_length, smell, color_gradient, price, life_time, freshness):
-            super().__init__(name, color, num_petals, stem_length, smell, price, life_time, freshness)
-            self.color_gradient = color_gradient
+    def __init__(self, name, color, num_petals, stem_length, smell, color_gradient, price, life_time, freshness):
+        super().__init__(name, color, num_petals, stem_length, smell, price, life_time, freshness)
+        self.color_gradient = color_gradient
 
 
-rose_red = Roses('Роза','Красный', 14, '50 см', 'Сладкий пряный', True,
+rose_red = Roses('Роза', 'Красный', 14, '50 см', 'Сладкий пряный', True,
                  10, 5, 'fresh')
-rose_white = Roses('Роза','Белый', 15, '40 см', 'Ирис', True, 12,
+rose_white = Roses('Роза', 'Белый', 15, '40 см', 'Ирис', True, 12,
                    3, 'medium')
-violet_purple = Violets('Фиалка','Фиолетовый', 5, '5 см', 'Сладкий пудровый',
+violet_purple = Violets('Фиалка', 'Фиолетовый', 5, '5 см', 'Сладкий пудровый',
                         True, 5, 8, 'fresh')
-violet_blue = Violets('Фиалка','Небесный', 7, '8 см', 'Древесный',
+violet_blue = Violets('Фиалка', 'Небесный', 7, '8 см', 'Древесный',
                       False,6, 2, 'stale')
 
 n_rose_red = input("Введите кол-во красных роз: ")
@@ -63,16 +63,15 @@ class Booket:
         cost_violet_purple = int(violet_purple.price) * int(n_violet_purple)
         cost_violet_blue = int(violet_blue.price) * int(n_violet_blue)
 
-        total_cost = (cost_rose_red + cost_rose_white +
-                       cost_violet_purple + cost_violet_blue)
+        total_cost = (cost_rose_red + cost_rose_white + cost_violet_purple + cost_violet_blue)
 
         print(f"\nИтого: {total_cost}$ за букет")
 
     def withering_time(self, n_rose_red, n_rose_white, n_violet_purple, n_violet_blue):
-        life_booket = ((int(rose_red.life_time) * int(n_rose_red) + int(rose_white.life_time) * int(n_rose_white) +
-                       int(violet_purple.life_time) * int(n_violet_purple) +
-                        int(violet_blue.life_time) * int(n_violet_blue)) /
-                       (int(n_rose_red) + int(n_rose_white) + int(n_violet_purple) + int(n_violet_blue)))
+        life_booket = ((int(rose_red.life_time) * int(n_rose_red) + int(rose_white.life_time) * int(n_rose_white)
+                        + int(violet_purple.life_time) * int(n_violet_purple) + int(violet_blue.life_time)
+                        * int(n_violet_blue)) / (int(n_rose_red) + int(n_rose_white) + int(n_violet_purple)
+                                                 + int(n_violet_blue)))
         print(f"\nВремя увядания букета по среднему времени жизни всех цветов: {life_booket} в календарных сутках")
 
     def sort_flowers(self, attribute):
