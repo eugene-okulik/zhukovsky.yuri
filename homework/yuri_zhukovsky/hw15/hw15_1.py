@@ -108,13 +108,13 @@ print("Книги студента:", cursor.fetchall())
 # Пришлось вывовдить параметры в select_query через AS, чтобы вывести все title со всех таблиц
 
 select_query = '''
-SELECT students.name AS student_name, 
-students.second_name AS student_second_name, 
-`groups`.title AS group_title, 
-books.title AS book_title, 
-marks.value AS mark_value, 
-lessons.title AS lesson_title, 
-subjets.title AS subject_title 
+SELECT students.name AS student_name,
+students.second_name AS student_second_name,
+`groups`.title AS group_title,
+books.title AS book_title,
+marks.value AS mark_value,
+lessons.title AS lesson_title,
+subjets.title AS subject_title
 FROM students
 LEFT JOIN `groups` ON `groups`.id = students.group_id
 LEFT JOIN books ON students.id = books.taken_by_student_id
