@@ -1,5 +1,3 @@
-from tokenize import group
-
 import mysql.connector as mysql
 
 db = mysql.connect(
