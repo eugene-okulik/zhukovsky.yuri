@@ -38,39 +38,35 @@ cursor.execute(f'UPDATE students set group_id = {group_id} WHERE id = {student_i
 
 # -- Создайте несколько учебных предметов (subjects)
 
-insert_query_subjects = "INSERT INTO subjets (title) VALUES (%s)"
-cursor.executemany(
-    insert_query_subjects, [
-        ('Python for beginners',),
-        ('SQL for beginners',)
-    ]
-)
-
-cursor.execute("SELECT id FROM subjets ORDER BY id DESC LIMIT 2")
-inserted_subjets_ids = cursor.fetchall()
-# print(inserted_subjets_ids)
-
-subjet2_id, subjet1_id = [row['id'] for row in inserted_subjets_ids]
+cursor.execute("INSERT INTO subjets (title) VALUES ('Python for beginers')")
+subjet1_id = cursor.lastrowid
+cursor.execute("INSERT INTO subjets (title) VALUES ('SQL for beginers')")
+subjet2_id = cursor.lastrowid
 # print(subjet1_id, subjet2_id)
 
 # -- Создайте по два занятия для каждого предмета (lessons)
 
-insert_query_lessons = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
-cursor.executemany(
-    insert_query_lessons, [
-        ('Values in Python', subjet1_id),
-        ('Classes in Python', subjet1_id),
-        ('Selects in SQL', subjet2_id),
-        ('Joins in SQL', subjet2_id)
-    ]
+cursor.execute(
+    'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)',
+    ('Values in Python', subjet1_id)
 )
-
-cursor.execute("SELECT id FROM lessons ORDER BY id DESC LIMIT 4")
-inserted_lessons_ids = cursor.fetchall()
-# print(inserted_lessons_ids)
-
-lesson4_id, lesson3_id, lesson2_id, lesson1_id = [row['id'] for row in inserted_lessons_ids]
-# print(lesson4_id, lesson3_id, lesson2_id, lesson1_id)
+lesson1_id = cursor.lastrowid
+cursor.execute(
+    'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)',
+    ('Classes in Python', subjet1_id)
+)
+lesson2_id = cursor.lastrowid
+cursor.execute(
+    'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)',
+    ('Selects in SQL', subjet2_id)
+)
+lesson3_id = cursor.lastrowid
+cursor.execute(
+    'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)',
+    ('Joins in SQL', subjet2_id)
+)
+lesson4_id = cursor.lastrowid
+# print(lesson1_id, lesson2_id, lesson3_id, lesson4_id)
 
 # -- Поставьте своему студенту оценки (marks) для всех созданных вами занятий
 
@@ -83,13 +79,6 @@ cursor.executemany(
         (10, lesson4_id, student_id)
     ]
 )
-
-cursor.execute("SELECT id FROM marks ORDER BY id DESC LIMIT 4")
-inserted_marks_ids = cursor.fetchall()
-# print(inserted_marks_ids)
-
-mark4_id, mark3_id, mark2_id, mark1_id = [row['id'] for row in inserted_marks_ids]
-# print(mark4_id, mark3_id, mark2_id, mark1_id)
 
 # -- Получите информацию из базы данных:
 # -- Все оценки студента
@@ -125,26 +114,6 @@ WHERE students.id = %s;
 '''
 cursor.execute(select_query, (student_id,))
 print("Всё о студенте:", cursor.fetchall())
-
-# Ниже сразу удаляю данные из таблиц
-
-delete_marks_query = 'DELETE FROM marks WHERE student_id = %s'
-cursor.execute(delete_marks_query, (student_id,))
-
-delete_lessons_query = 'DELETE FROM lessons WHERE subject_id IN (%s, %s)'
-cursor.execute(delete_lessons_query, (subjet1_id, subjet2_id))
-
-delete_subjets_query = 'DELETE FROM subjets WHERE id IN (%s, %s)'
-cursor.execute(delete_subjets_query, (subjet1_id, subjet2_id))
-
-delete_groups_query = 'DELETE FROM `groups` WHERE id = %s'
-cursor.execute(delete_groups_query, (group_id,))
-
-delete_books_query = 'DELETE FROM books WHERE taken_by_student_id = %s'
-cursor.execute(delete_books_query, (student_id,))
-
-delete_students_query = 'DELETE FROM students WHERE id = %s'
-cursor.execute(delete_students_query, (student_id,))
 
 db.commit()
 db.close()
