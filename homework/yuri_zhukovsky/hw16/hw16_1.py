@@ -17,7 +17,7 @@ with open(hw_16_data_csv_file, newline='') as csv_file:
         # print(row)
         csv_data.append(row)
 
-# print(csv_data)
+print(csv_data)
 
 dotenv.load_dotenv()
 
@@ -48,9 +48,8 @@ LEFT JOIN subjets ON lessons.subject_id = subjets.id;
 '''
 cursor.execute(select_query)
 db_data = cursor.fetchall()
-# print(cursor.fetchall())
+# print(db_data)
 
-# Преобразуем данные из БД в удобный формат для сравнения
 db_records = {(
     d['name'],
     d['second_name'],
@@ -60,14 +59,14 @@ db_records = {(
     d['lesson_title'],
     d['mark_value']) for d in db_data}
 
-# Сравнение данных из CSV с данными из БД
+# print(db_records)
+
 missing_records = []
 for row in csv_data:
-    csv_record = tuple(row)  # Преобразуем строку из CSV в кортеж для сравнения
+    csv_record = tuple(row)
     if csv_record not in db_records:
         missing_records.append(csv_record)
 
-# Выводим записи, которых нет в БД
 print("Записи, которых нет в БД:")
 for record in missing_records:
     print(record)
