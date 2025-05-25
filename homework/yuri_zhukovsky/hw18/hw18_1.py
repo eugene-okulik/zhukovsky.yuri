@@ -21,7 +21,7 @@ def post_an_object():
     assert response.status_code == 200, 'Status code is incorrect'
     assert response.json()['name'] == 'yzhtest', 'Name is incorrect'
     assert response.json()['data']['color'] == 'dark black', 'Color is incorrect'
-    assert  response.json()['data']['size'] == 'medium', 'Size is incorrect'
+    assert response.json()['data']['size'] == 'medium', 'Size is incorrect'
 
 
 def new_object():
@@ -49,12 +49,12 @@ def clear_an_object(obj_id):
 def put_an_object():
     obj_id = new_object()
     body = {
-    "name": "zhtest",
-    "data": {
+        "name": "zhtest",
+        "data": {
         "color": "white",
         "size": "big"
+            }
         }
-    }
     headers = {'Content-Type': 'application/json'}
     response = requests.put(
         f'http://167.172.172.115:52353/object/{obj_id}',
@@ -68,14 +68,14 @@ def put_an_object():
     assert response.status_code == 200, 'Status code is incorrect'
     assert response.json()['name'] == 'zhtest', 'Name is incorrect'
     assert response.json()['data']['color'] == 'white', 'Color is incorrect'
-    assert  response.json()['data']['size'] == 'big', 'Size is incorrect'
+    assert response.json()['data']['size'] == 'big', 'Size is incorrect'
 
 
 def patch_an_object():
     obj_id = new_object()
     body = {
-    "name": "zhprod"
-    }
+        "name": "zhprod"
+        }
     headers = {'Content-Type': 'application/json'}
     response = requests.patch(
         f'http://167.172.172.115:52353/object/{obj_id}',
@@ -84,12 +84,12 @@ def patch_an_object():
     )
     clear_an_object(obj_id)
     assert isinstance(response.json()['id'], int), 'ID is not an integer'
-    # # print(response.json())
+    # print(response.json())
     assert response.json()['id'] == obj_id, 'ID is incorrect'
     assert response.status_code == 200, 'Status code is incorrect'
     assert response.json()['name'] == 'zhprod', 'Name is incorrect'
     assert response.json()['data']['color'] == 'dark black', 'Color is incorrect'
-    assert  response.json()['data']['size'] == 'medium', 'Size is incorrect'
+    assert response.json()['data']['size'] == 'medium', 'Size is incorrect'
 
 
 def delete_an_object():
