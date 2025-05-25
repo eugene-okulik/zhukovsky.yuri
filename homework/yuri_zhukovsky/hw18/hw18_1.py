@@ -51,10 +51,10 @@ def put_an_object():
     body = {
         "name": "zhtest",
         "data": {
-        "color": "white",
-        "size": "big"
-            }
+            "color": "white",
+            "size": "big"
         }
+    }
     headers = {'Content-Type': 'application/json'}
     response = requests.put(
         f'http://167.172.172.115:52353/object/{obj_id}',
@@ -75,7 +75,7 @@ def patch_an_object():
     obj_id = new_object()
     body = {
         "name": "zhprod"
-        }
+    }
     headers = {'Content-Type': 'application/json'}
     response = requests.patch(
         f'http://167.172.172.115:52353/object/{obj_id}',
