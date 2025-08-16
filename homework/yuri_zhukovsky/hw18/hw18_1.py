@@ -107,10 +107,9 @@ def patch_an_object():
 def delete_an_object():
     obj_id = new_object()
     response = requests.delete(f'http://167.172.172.115:52353/object/{obj_id}')
-    with allure.step('Asserts'):
+    with (((((allure.step('Asserts')))))):
         assert response.status_code == 200, 'Status code is incorrect'
-        assert response.content.decode(
-        'utf-8') == f'Object with id {obj_id} successfully deleted', 'Message is incorrect'
+        assert response.content.decode('utf-8') == f'Object with id {obj_id} deleted', 'Message is incorrect'
 
 
 post_an_object()
