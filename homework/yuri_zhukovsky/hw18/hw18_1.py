@@ -1,6 +1,10 @@
 import requests
+import allure
 
 
+@allure.feature('Posts')
+@allure.story('Post creation')
+@allure.title('POST request')
 def post_an_object():
     body = {
         "name": "yzhtest",
@@ -15,13 +19,13 @@ def post_an_object():
         json=body,
         headers=headers
     )
-    # print(response.json()['id'])
     clear_an_object(response.json()['id'])
-    assert isinstance(response.json()['id'], int), 'ID is not an integer'
-    assert response.status_code == 200, 'Status code is incorrect'
-    assert response.json()['name'] == 'yzhtest', 'Name is incorrect'
-    assert response.json()['data']['color'] == 'dark black', 'Color is incorrect'
-    assert response.json()['data']['size'] == 'medium', 'Size is incorrect'
+    with allure.step('Asserts'):
+        assert isinstance(response.json()['id'], int), 'ID is not an integer'
+        assert response.status_code == 200, 'Status code is incorrect'
+        assert response.json()['name'] == 'yzhtest', 'Name is incorrect'
+        assert response.json()['data']['color'] == 'dark black', 'Color is incorrect'
+        assert response.json()['data']['size'] == 'medium', 'Size is incorrect'
 
 
 def new_object():
@@ -38,7 +42,6 @@ def new_object():
         json=body,
         headers=headers
     )
-    # print(response.json()['id'])
     return response.json()['id']
 
 
@@ -46,6 +49,9 @@ def clear_an_object(obj_id):
     requests.delete(f'http://167.172.172.115:52353/object/{obj_id}')
 
 
+@allure.feature('Posts')
+@allure.story('Post edit')
+@allure.title('PUT request')
 def put_an_object():
     obj_id = new_object()
     body = {
@@ -62,15 +68,18 @@ def put_an_object():
         headers=headers
     )
     clear_an_object(obj_id)
-    assert isinstance(response.json()['id'], int), 'ID is not an integer'
-    # # print(response.json())
-    assert response.json()['id'] == obj_id, 'ID is incorrect'
-    assert response.status_code == 200, 'Status code is incorrect'
-    assert response.json()['name'] == 'zhtest', 'Name is incorrect'
-    assert response.json()['data']['color'] == 'white', 'Color is incorrect'
-    assert response.json()['data']['size'] == 'big', 'Size is incorrect'
+    with allure.step('Asserts'):
+        assert isinstance(response.json()['id'], int), 'ID is not an integer'
+        assert response.json()['id'] == obj_id, 'ID is incorrect'
+        assert response.status_code == 200, 'Status code is incorrect'
+        assert response.json()['name'] == 'zhtest', 'Name is incorrect'
+        assert response.json()['data']['color'] == 'white', 'Color is incorrect'
+        assert response.json()['data']['size'] == 'big', 'Size is incorrect'
 
 
+@allure.feature('Posts')
+@allure.story('Post edit name')
+@allure.title('PATCH request')
 def patch_an_object():
     obj_id = new_object()
     body = {
@@ -83,22 +92,24 @@ def patch_an_object():
         headers=headers
     )
     clear_an_object(obj_id)
-    assert isinstance(response.json()['id'], int), 'ID is not an integer'
-    # print(response.json())
-    assert response.json()['id'] == obj_id, 'ID is incorrect'
-    assert response.status_code == 200, 'Status code is incorrect'
-    assert response.json()['name'] == 'zhprod', 'Name is incorrect'
-    assert response.json()['data']['color'] == 'dark black', 'Color is incorrect'
-    assert response.json()['data']['size'] == 'medium', 'Size is incorrect'
+    with allure.step('Asserts'):
+        assert isinstance(response.json()['id'], int), 'ID is not an integer'
+        assert response.json()['id'] == obj_id, 'ID is incorrect'
+        assert response.status_code == 200, 'Status code is incorrect'
+        assert response.json()['name'] == 'zhprod', 'Name is incorrect'
+        assert response.json()['data']['color'] == 'dark black', 'Color is incorrect'
+        assert response.json()['data']['size'] == 'medium', 'Size is incorrect'
 
 
+@allure.feature('Posts')
+@allure.story('Post deletion')
+@allure.title('DELETE request')
 def delete_an_object():
     obj_id = new_object()
     response = requests.delete(f'http://167.172.172.115:52353/object/{obj_id}')
-    # print(response.status_code)
-    # print(response.content)
-    assert response.status_code == 200, 'Status code is incorrect'
-    assert response.content.decode(
+    with allure.step('Asserts'):
+        assert response.status_code == 200, 'Status code is incorrect'
+        assert response.content.decode(
         'utf-8') == f'Object with id {obj_id} successfully deleted', 'Message is incorrect'
 
 
