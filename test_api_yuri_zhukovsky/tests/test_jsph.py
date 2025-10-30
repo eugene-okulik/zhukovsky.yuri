@@ -1,7 +1,5 @@
 import pytest
 
-from test_api_yuri_zhukovsky.conftest import create_post_endpoint
-
 TEST_DATA = [
     {"name": "yzhtest", "data": {"color": "dark black", "size": "medium"}},
     {"name": "yzhtest2", "data": {"color": "dark black2", "size": "medium2"}}
