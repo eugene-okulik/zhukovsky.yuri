@@ -7,7 +7,6 @@ class Endpoint:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-
     @allure.step('Check the name is the same as sent')
     def check_response_name_is_correct(self, expected_name):
         assert self.json['name'] == expected_name, f"Expected name {expected_name}, but got {self.json['name']}"
