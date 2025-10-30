@@ -6,7 +6,6 @@ from test_api_yuri_zhukovsky.endpoints.endpoint import Endpoint
 
 class DeletePost(Endpoint):
 
-
     @allure.step('Delete a post')
     def delete_a_post(self, post_id, headers=None):
         headers = headers if headers else self.headers

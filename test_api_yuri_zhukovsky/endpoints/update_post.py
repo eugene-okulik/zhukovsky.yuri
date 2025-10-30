@@ -6,7 +6,6 @@ from test_api_yuri_zhukovsky.endpoints.endpoint import Endpoint
 
 class UpdatePost(Endpoint):
 
-
     @allure.step('Update a post')
     def make_changes_in_post(self, post_id, payload, headers=None):
         headers = headers if headers else self.headers

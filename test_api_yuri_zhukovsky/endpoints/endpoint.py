@@ -14,18 +14,17 @@ class Endpoint:
 
     @allure.step('Check the color is the same as sent')
     def check_response_color_is_correct(self, expected_color):
-        assert (self.json['data']['color'] ==
-                expected_color), f"Expected color {expected_color}, but got {self.json['data']['color']}"
+        assert (self.json['data']['color'] == expected_color), (f"Expected color {expected_color}, "
+                                                                f"but got {self.json['data']['color']}")
 
     @allure.step('Check the size is the same as sent')
     def check_response_size_is_correct(self, expected_size):
-        assert (self.json['data']['size'] ==
-                expected_size), f"Expected color {expected_size}, but got {self.json['data']['size']}"
+        assert (self.json['data']['size'] == expected_size), (f"Expected color {expected_size}, "
+                                                              f"but got {self.json['data']['size']}")
 
     @allure.step('Check that response is 200')
     def check_that_status_is_200(self):
         assert self.response.status_code == 200, f"Expected status code 200, but got {self.response.status_code}"
-
 
     @allure.step('Check that 400 error received')
     def check_bad_request(self):
