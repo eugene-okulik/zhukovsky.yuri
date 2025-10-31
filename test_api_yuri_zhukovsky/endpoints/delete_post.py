@@ -4,13 +4,13 @@ import allure
 from test_api_yuri_zhukovsky.endpoints.endpoint import Endpoint
 
 
-class DeletePost(Endpoint):
+class DeleteObj(Endpoint):
 
-    @allure.step('Delete a post')
-    def delete_a_post(self, post_id, headers=None):
+    @allure.step('Delete an obj')
+    def delete_an_obj(self, obj_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.delete(
-            f'{self.url}/{post_id}',
+            f'{self.url}/{obj_id}',
             headers=headers
         )
 
@@ -18,7 +18,7 @@ class DeletePost(Endpoint):
             try:
                 self.json = self.response.json()
             except ValueError:
-                print("\nResponse is not in JSON format.")
+                print("\nError: Response is not in JSON format.")
                 self.json = None
         else:
             print(f"\nError {self.response.status_code}:\n{self.response.text}")

@@ -4,10 +4,10 @@ import allure
 from test_api_yuri_zhukovsky.endpoints.endpoint import Endpoint
 
 
-class CreatePost(Endpoint):
+class CreateObj(Endpoint):
 
-    @allure.step('Create new post')
-    def create_new_post(self, payload, headers=None):
+    @allure.step('Create new obj')
+    def create_new_obj(self, payload, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.post(
             self.url,

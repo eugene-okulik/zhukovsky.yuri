@@ -4,13 +4,13 @@ import allure
 from test_api_yuri_zhukovsky.endpoints.endpoint import Endpoint
 
 
-class UpdatePost(Endpoint):
+class UpdateObj(Endpoint):
 
-    @allure.step('Update a post')
-    def make_changes_in_post(self, post_id, payload, headers=None):
+    @allure.step('Update an obj')
+    def make_changes_in_obj(self, obj_id, payload, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.put(
-            f'{self.url}/{post_id}',
+            f'{self.url}/{obj_id}',
             json=payload,
             headers=headers
         )
