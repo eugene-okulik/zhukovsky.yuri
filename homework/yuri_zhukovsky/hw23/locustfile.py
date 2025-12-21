@@ -1,5 +1,5 @@
 from locust import task, HttpUser
-import random
+
 
 class ObjUser(HttpUser):
 
